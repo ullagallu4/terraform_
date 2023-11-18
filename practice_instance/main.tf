@@ -28,6 +28,13 @@ resource "aws_instance" "instane-ubuntu" {
     inline = [ 
       "sudo apt update -y"
      ] 
+    
+    connection {
+      type        = "ssh"
+      user        = "ubuntu" 
+      private_key = file("~/ansible.pem")
+      host        = self.public_ip
+    }
   }
 }
 
