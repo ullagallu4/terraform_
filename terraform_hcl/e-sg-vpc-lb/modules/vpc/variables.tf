@@ -8,15 +8,23 @@ variable "cidr_range" {
   type = string
 }
 
-variable "subnet_range" {
+variable "public_subnet_range" {
   description="define cidr range"
   type = list(string)
-  default = ["172.16.0.0/24","172.16.1.0/24"]
+}
+
+variable "private_subnet_range" {
+  description="define cidr range"
+  type = list(string)
 }
 
 
-variable "subnet_names" {
+variable "public_subnet_names" {
   description="subnet names"
   type = list(string)
-  default = ["public1","public2"]
+}
+
+variable "private_subnet_names" {
+  description="subnet names"
+  type = list(string)
 }
