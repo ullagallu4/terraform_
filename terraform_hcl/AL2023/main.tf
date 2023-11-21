@@ -1,19 +1,8 @@
-data "aws_ami" "amzn-linux-2023-ami" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-2023.*-x86_64"]
-  }
-}
-
 resource "aws_instance" "instane-AL3" {
-  ami             = data.aws_ami.amzn-linux-2023-ami.id
+  ami             = data.aws_ami.amzn2.id
   instance_type   = var.instance_type
   key_name        = var.key_name
-  subnet_id       = var.ps1
-  security_groups = var.sg_id
+  user_data = file("${path.module}/myscript-go.sh")
 
   # provisioner "remote-exec" {
   #   inline = [
@@ -27,6 +16,9 @@ resource "aws_instance" "instane-AL3" {
   #     host        = self.public_ip
   #   }
   # }
+  tags = {
+    Name = "WebServer"
+  }
 }
 
 
