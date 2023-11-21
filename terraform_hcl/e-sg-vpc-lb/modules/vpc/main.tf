@@ -7,6 +7,8 @@ locals {
 resource "aws_vpc" "myvpc" {
   cidr_block       = var.cidr_range
   instance_tenancy = "default"
+  enable_dns_hostnames = true
+  enable_dns_support = true
 
   tags = {
     Name = local.vpc_name

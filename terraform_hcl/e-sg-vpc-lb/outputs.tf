@@ -10,3 +10,6 @@ output "private_subnet_ids" {
 output "sg_id" {
   value = module.sg.sg_id
 }
+output "ssh-commands" {
+  value = module.ec2.ssh_command
+}
