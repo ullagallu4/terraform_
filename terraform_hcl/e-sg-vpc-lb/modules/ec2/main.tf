@@ -27,8 +27,11 @@ resource "aws_instance" "instane-AL3" {
   user_data = <<EOF
   #!/bin/bash
     sudo dnf update -y
-    sudo dnf install -y httpd
-    sudo dnf install -y git
+    sudo dnf list | grep httpd
+    sudo dnf install -y httpd.x86_64
+    sudo systemctl start httpd.service
+    sudo systemctl status httpd.service
+    sudo systemctl enable httpd.service
     export META_INST_ID=`curl http://169.254.169.254/latest/meta-data/instance-id`
     export META_INST_TYPE=`curl http://169.254.169.254/latest/meta-data/instance-type`
     export META_INST_AZ=`curl http://169.254.169.254/latest/meta-data/placement/availability-zone`

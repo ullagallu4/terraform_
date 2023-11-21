@@ -13,3 +13,9 @@ output "sg_id" {
 output "ssh-commands" {
   value = module.ec2.ssh_command
 }
+output "instance_ids" {
+  value = module.ec2.instance_ids
+}
+output "alb_dns" {
+  value = module.lb.alb-dns
+}

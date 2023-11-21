@@ -29,3 +29,11 @@ module "ec2" {
   }
 
 }
+
+module "lb" {
+  source             = "./modules/lb"
+  sg_id              = [module.sg.sg_id]
+  public_subnets_ids = module.vpc.public_subnets_ids
+  vpc_id             = module.vpc.vpc_id
+  instance_ids       = module.ec2.instance_ids
+}
