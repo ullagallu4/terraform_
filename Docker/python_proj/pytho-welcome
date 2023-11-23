@@ -1,0 +1,9 @@
+# Build Stage
+FROM python:3.8 AS build
+WORKDIR /app
+COPY python_proj/app.py app.py
+
+FROM python:3.8-alpine
+WORKDIR /app
+COPY --from=build /app/app.py .
+CMD ["python", "app.py"]
